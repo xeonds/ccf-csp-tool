@@ -40,7 +40,14 @@ if __name__ == '__main__':
     def save(res): 
         with open('res.json', 'w') as f: json.dump(res, f, indent=4)
     def convert_to_html(res):
-        html_content= '<!DOCTYPE html>\n<html>\n<head>\n<title>CSP Problems</title>\n</head>\n<body>\n'
+        html_content= '''
+            <!DOCTYPE html><html><head>
+            <title>CSP Problems</title>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" integrity="sha384-n8MVd4RsNIU0tAv4ct0nTaAbDJwPJzDEaqSD1odI+WdtXRGWt2kTvGFasHpSy3SV" crossorigin="anonymous">
+                <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js" integrity="sha384-XjKyOOlGwcjNTAIQHIpgOno0Hl1YQqzUOEleOLALmuqehneUG+vnGctmUb0ZY0l8" crossorigin="anonymous"></script>
+                <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+            </head><body>\n'''
         html_content += '<ul>\n'
         for item in res: html_content += f'<li><a href="#{item["gpid"]}">{item["title"]}</a></li>\n'
         html_content += '<div>\n'
@@ -49,7 +56,4 @@ if __name__ == '__main__':
         html_content += '</div>\n'
         html_content += '</body>\n</html>'
         with open('index.html', 'w') as f: f.write(html_content)
-    res=fetch()
-    save(res)
-    convert_to_html(res)
-    # with open('res.json', 'r') as f: convert_to_html(json.load(f))
+    with open('res.json', 'r') as f: convert_to_html(json.load(f))
