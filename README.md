@@ -6,3 +6,6 @@ USAGE
 
 It will produce an *index.html* containing all problems.
 
+LICENSE
+
+GNU Generic Public License V3.0
